@@ -8,14 +8,10 @@
     }
 </script>
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <UploadForm />
     </div>
 </template>
 
 <style scoped>
-    .container {
-        display: flex;
-        flex-direction: column;
-    }
 </style>

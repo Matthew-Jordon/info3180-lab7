@@ -49,7 +49,16 @@
 
 <style scoped>
 
-div {
+form {
+    margin: 1pc;
+    max-width: 50%;
+}
+
+.form-control {
+    margin: 1pc;
+}
+
+.btn {
     margin: 1pc;
 }
 
