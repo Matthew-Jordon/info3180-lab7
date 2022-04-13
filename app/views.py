@@ -13,6 +13,7 @@ from flask import render_template, request, jsonify, send_file
 import os
 from app.forms import UploadForm
 from werkzeug.utils import secure_filename
+from flask_wtf.csrf import generate_csrf
 
 
 ###
@@ -31,9 +32,13 @@ def upload():
         f = request.files.get('photo', False)
         if f:
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
-        return jsonify(message='File upload successful!', filename=secure_filename(f.filename), description=request['description'])
+        return jsonify(message='File upload successful!', filename=secure_filename(f.filename), description=request.form['description'])
     else:
         return jsonify(errors=form_errors(form))
+
+@app.route('/api/csrf-token', methods=['GET'])
+def get_csrf():
+    return jsonify({'csrf_token': generate_csrf()})
 
 ###
 # The functions below should be applicable to all Flask apps.
